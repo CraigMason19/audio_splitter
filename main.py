@@ -1,25 +1,16 @@
-import os
+from datetime import timedelta
+from source.util import configure_ffmpeg
+from source.audio_splitter import split_into_chunks, export_section
 
-from pydub import AudioSegment
-from source.audio_splitter import OUTPUT_DIR, split_into_chunks, export_section
-
-
-def configure_ffmpeg():
-    os.environ["PATH"] += os.pathsep + "E:/FFmpeg/bin"
-
-    AudioSegment.converter = "E:/FFmpeg/bin/ffmpeg.exe"
-    AudioSegment.ffprobe = "E:/FFmpeg/bin/ffprobe.exe"
-
+FILENAME = "example_podcast.mp3"
+   
+SPLIT_LENGTH = 20
+START_TIME = timedelta(hours=0, minutes=30, seconds=0)
+END_TIME = timedelta(hours=2, minutes=0, seconds=0)
 
 if __name__ == "__main__":
-    configure_ffmpeg()
-    
-    filename = "07 - Lord Edgware Dies - Part 01.mp3"
+    configure_ffmpeg() 
 
+    split_into_chunks(FILENAME, SPLIT_LENGTH)   
 
-    split_into_chunks(filename, 20)   
-
-
-    # start_time = timedelta(hours=0, minutes=30, seconds=0)
-    # end_time = timedelta(hours=2, minutes=0, seconds=0)
-    # export_section(filename, int(start_time.total_seconds() * 1000), int(end_time.total_seconds() * 1000))
+    # export_section(FILENAME, int(start_time.total_seconds() * 1000), int(end_time.total_seconds() * 1000))

@@ -1,19 +1,14 @@
 import os
 
 from pathlib import Path
-from datetime import timedelta
-
 from pydub import AudioSegment
+from source.util import ms_to_hours_minutes
 
 
 OUTPUT_DIR = "output"
 
 
-def ms_to_hours_minutes(milliseconds):
-    td = timedelta(milliseconds=milliseconds)
-    hours, remainder = divmod(td.seconds, 3600)
-    minutes, seconds = divmod(remainder, 60)
-    return f"{hours} hours, {minutes} minutes, {seconds} seconds"
+
 
 
 def split_into_chunks(filename, chunk_duration):
