@@ -1,13 +1,11 @@
 import os
 
 from pathlib import Path
+from datetime import timedelta
 from pydub import AudioSegment
 from source.util import ms_to_hours_minutes
 
-
 OUTPUT_DIR = "output"
-
-
 
 
 
@@ -37,7 +35,7 @@ def split_into_chunks(filename, chunk_duration):
     print("Splitting complete!")
 
 
-def export_section(filename, start_time, end_time):
+def export_section(filename, start_time: timedelta, end_time: timedelta) -> None:
     """
     Extracts a section of an audio file and exports it.
     """
@@ -50,19 +48,17 @@ def export_section(filename, start_time, end_time):
     audio = AudioSegment.from_mp3(filename)
     print(f"Loaded {filename} successfully. Duration: {ms_to_hours_minutes(len(audio))}")
 
-    # Ensure times are within range
-    start_time = max(0, start_time)
-    end_time = min(len(audio), end_time)
+    print(f"Extracting section from {start_time} to {end_time}")
 
-    if start_time >= end_time:
-        raise ValueError("Start time must be less than end time.")
 
     print("Splitting...")
-    section = audio[start_time:end_time]
-    
+    section = audio[int(start_time.total_seconds() * 1000) : int(end_time.total_seconds() * 1000)]
+
     # Generate output filename
     base_name = Path(filename).stem 
-    output_path = os.path.join(OUTPUT_DIR, f"{base_name}_section_{start_time}-{end_time}.mp3")
+    sanitized_start = str(start_time).replace(":", "-")
+    sanitized_end = str(end_time).replace(":", "-")
+    output_path = os.path.join(OUTPUT_DIR, f"{base_name}_section_{sanitized_start}-{sanitized_end}.mp3")
 
     section.export(output_path, format="mp3")
     print(f"Exported section: {output_path}")
