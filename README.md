@@ -3,7 +3,7 @@ A python script to split up long podcasts.
 
 Created so I can have a customizable mp3 splitter because I don't like falling asleep and losing track of where I was.
 
-This script allows you to process MP3 audio files by:
+This project allows you to process MP3 audio files by:
 1. Splitting a long audio file into smaller chunks of a specified duration.
 2. Extracting a specific section of an audio file based on start and end times.
 
@@ -20,7 +20,6 @@ pip install -r requirements.txt
 - Ensure FFmpeg is installed and correctly set in config.json
 
 ## Usage:
-- Ensure FFmpeg is installed and correctly set in config.json
 - Call `split_into_chunks` to split an audio file.
 - Call `export_section` to extract a section.
 
