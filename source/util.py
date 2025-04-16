@@ -3,7 +3,7 @@ import os
 from datetime import timedelta
 from pydub import AudioSegment
 
-from source.config import FFMPEG_PATH
+from source.audio_config import audio_config
 
 def ms_to_hours_minutes(milliseconds):
     td = timedelta(milliseconds=milliseconds)
@@ -12,7 +12,5 @@ def ms_to_hours_minutes(milliseconds):
     return f"{hours} hours, {minutes} minutes, {seconds} seconds"
 
 def configure_ffmpeg():
-    os.environ["PATH"] += os.pathsep + FFMPEG_PATH
-
-    AudioSegment.converter =  os.path.join(FFMPEG_PATH, "ffmpeg.exe")
-    AudioSegment.ffprobe = os.path.join(FFMPEG_PATH, "ffprobe.exe")
+    AudioSegment.converter = os.path.join(audio_config.ffmpeg_path, "ffmpeg.exe")
+    AudioSegment.ffprobe = os.path.join(audio_config.ffmpeg_path, "ffprobe.exe")

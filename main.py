@@ -1,4 +1,5 @@
 from datetime import timedelta
+
 from source.util import configure_ffmpeg
 from source.audio_splitter import split_into_chunks, export_section
 
@@ -11,6 +12,6 @@ END_TIME = timedelta(hours=1, minutes=0, seconds=0)
 if __name__ == "__main__":
     configure_ffmpeg() 
 
-    # split_into_chunks(FILENAME, SPLIT_LENGTH)   
+    split_into_chunks(FILENAME, SPLIT_LENGTH)   
 
-    export_section(FILENAME, START_TIME, END_TIME)
+    # export_section(FILENAME, START_TIME, END_TIME)
