@@ -2,3 +2,4 @@
 source/__pycache__/
 example_podcast.mp3
 output/
+.vscode/
