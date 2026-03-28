@@ -6,16 +6,16 @@ from source.timestamp import Timestamp
 from source.util import configure_ffmpeg
 
 
-FILENAME = os.path.join(audio_config.input_dir, "example_podcast.mp3")
-   
-SPLIT_LENGTH = 20
-START_TIME = Timestamp(0, 30, 0)
-END_TIME = Timestamp(1, 0, 0)
-
-
 if __name__ == "__main__":
     configure_ffmpeg() 
+    
+    filename = os.path.join(audio_config.input_dir, "example_podcast.mp3")
 
-    # split_into_chunks(FILENAME, SPLIT_LENGTH)   
 
-    export_section(FILENAME, START_TIME, END_TIME)
+    # split_length = 20
+    # split_into_chunks(FILENAME, split_length)   
+
+
+    start_time = Timestamp(0, 30, 0)
+    end_time = Timestamp(1, 0, 0)
+    export_section(filename, start_time, end_time)
