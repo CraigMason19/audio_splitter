@@ -8,12 +8,12 @@ from source.util import configure_ffmpeg
 
 if __name__ == "__main__":
     configure_ffmpeg() 
-    
+
     filename = os.path.join(audio_config.input_dir, "example_podcast.mp3")
 
 
     # split_length = 20
-    # split_into_chunks(FILENAME, split_length)   
+    # split_into_chunks(filename, split_length)   
 
 
     start_time = Timestamp(0, 30, 0)
