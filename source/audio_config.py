@@ -3,7 +3,7 @@ import os
 from source.config import Config
 
 class AudioConfigManager(Config):
-    required_keys = ['ffmpeg_path', 'output_dir']
+    required_keys = ['ffmpeg_path', 'input_dir', 'output_dir']
 
     def __init__(self, config_path="config.json"):
         super().__init__(config_path)
@@ -23,6 +23,10 @@ class AudioConfigManager(Config):
     def ffmpeg_path(self):
         return self._config['ffmpeg_path']
 
+    @property
+    def input_dir(self):
+        return self._config['input_dir']
+    
     @property
     def output_dir(self):
         return self._config['output_dir']
