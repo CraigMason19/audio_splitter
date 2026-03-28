@@ -1,4 +1,4 @@
-# audio_splitter
+# 🔊 audio_splitter
 A python project to split up long podcasts.
 
 Created so I can have a customizable MP3 splitter because I don't like falling asleep and losing track of where I am in long form audio.
@@ -8,19 +8,19 @@ This project allows you to process MP3 audio files by:
 2. Extracting a specific section of an audio file based on start and end times.
 3. Splitting a audio file using timestamps.
 
-## Requirements
+## 📋 Requirements
 - Python 3.x.
 - Uses the [pydub](https://github.com/jiaaro/pydub) library for audio processing.
 - Requires [FFmpeg](https://ffmpeg.org/) to be installed; its path can be set in `config.json`.
 
-## Installation
+## 🛠️ Installation
 - Install dependencies with:
 ```python
 pip install -r requirements.txt
 ```
 - Ensure FFmpeg is installed and correctly set in `config.json`
 
-## Usage:
+## 📝 Usage:
 - Call `split_into_chunks` to split an audio file.
 - Call `export_section` to extract a section.
 - Call `split_on_timestamps` to split from timestamps.
