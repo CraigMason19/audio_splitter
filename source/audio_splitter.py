@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 from source.util import ms_to_hours_minutes
 from source.audio_config import audio_config
-
+from source.timestamp import Timestamp
 
 def split_into_chunks(filename, chunk_duration):
     """
@@ -32,7 +32,7 @@ def split_into_chunks(filename, chunk_duration):
     print("Splitting complete!")
 
 
-def export_section(filename, start_time: timedelta, end_time: timedelta) -> None:
+def export_section(filename, start_time: Timestamp, end_time: Timestamp) -> None:
     """
     Extracts a section of an audio file and exports it.
     """
@@ -47,7 +47,7 @@ def export_section(filename, start_time: timedelta, end_time: timedelta) -> None
 
 
     print("Splitting...")
-    section = audio[int(start_time.total_seconds() * 1000) : int(end_time.total_seconds() * 1000)]
+    section = audio[int(start_time.to_timedelta().total_seconds() * 1000) : int(end_time.to_timedelta().total_seconds() * 1000)]
 
     # Generate output filename
     base_name = Path(filename).stem 
