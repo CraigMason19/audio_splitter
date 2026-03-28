@@ -19,11 +19,13 @@ def load_audio(filename: str):
     return audio
     
 
-def split_into_chunks(filename: str, chunk_duration):
+def split_into_chunks(filename: str, chunk_duration: int) -> None:
     """
     Splits a long .mp3 into smaller chunks
     """
     audio = load_audio(filename)
+
+    print(f"Splitting into {chunk_duration} minute chunks...")
 
     segment_length = chunk_duration * 60 * 1000
 
