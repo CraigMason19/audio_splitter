@@ -1,4 +1,5 @@
 {
-    "ffmpeg_path": "E:/FFmpeg/bin",
+    "ffmpeg_path": "E:\\FFmpeg\\bin",
+    "input_dir": "input",
     "output_dir": "output"
 }
