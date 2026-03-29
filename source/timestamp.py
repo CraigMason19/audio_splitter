@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from datetime import timedelta
 
 
-TS_RE = re.compile(r"^(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$")
+TS_RE = re.compile(r"^(\d+):(\d{1,2})(?::(\d{1,2}))?$")
 
 
 def is_valid_timestamp(ts: str) -> bool:
@@ -27,6 +27,7 @@ class Timestamp:
         Because this class is frozen (immutable), validation must happen here
         to guarantee that a Timestamp can never be created in an invalid state.
         """
+        # Type validation
         if not isinstance(self.hour, int):
             raise TypeError("Timestamp hour must be of type int")
         
@@ -35,7 +36,17 @@ class Timestamp:
         
         if not isinstance(self.second, int):
             raise TypeError("Timestamp second must be of type int")
-    
+
+        # Value validation
+        if self.hour < 0:
+            raise ValueError("Timestamp hour must be non-negative")
+
+        if not (0 <= self.minute <= 59):
+            raise ValueError("Timestamp minute must be between 0 and 59")
+
+        if not (0 <= self.second <= 59):
+            raise ValueError("Timestamp second must be between 0 and 59")
+        
     @classmethod
     def from_string(cls, ts: str):
         if is_valid_timestamp(ts):
