@@ -12,6 +12,8 @@ class TestTimestampParsing(unittest.TestCase):
             "12:34:56",
             "00:00",
             "23:59:59",
+            "1234:59:00",
+            "1234:59:0",
         ]
 
         for ts in valid_inputs:
@@ -53,6 +55,31 @@ class TestTimestampParsing(unittest.TestCase):
             "",
             " ",
             " : : ",
+        ]
+
+        for ts in invalid_inputs:
+            with self.subTest(ts=ts):
+                with self.assertRaises(ValueError):
+                    Timestamp.from_string(ts)
+
+    def test_invalid_negative_values(self):
+        invalid_inputs = [
+            "-1:10:10",
+            "10:-1:10",
+            "10:10:-1",
+        ]
+
+        for ts in invalid_inputs:
+            with self.subTest(ts=ts):
+                with self.assertRaises(ValueError):
+                    Timestamp.from_string(ts)
+
+    def test_invalid_minute_second_ranges(self):
+        invalid_inputs = [
+            "0:60:00",
+            "0:00:60",
+            "10:99:10",
+            "10:10:99",
         ]
 
         for ts in invalid_inputs:
