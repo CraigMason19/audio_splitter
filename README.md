@@ -21,9 +21,6 @@ pip install -r requirements.txt
 - Ensure FFmpeg is installed and correctly set in `config.json`
 
 ## 📝 Usage:
-- Call `split_into_chunks` to split an audio file.
-- Call `export_section` to extract a section.
-- Call `split_on_timestamps` to split from timestamps.
 
 ### Splitting into chunks
 ```python
