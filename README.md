@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```python
 split_into_chunks("my_podcast.mp3", 20)
 ```
-This will create 20-minute chunks from the original file.
+Splits audio into 20-minute chunks.
 
 ### Extracting a specific section
 ```python
@@ -34,6 +34,7 @@ start_time = Timestamp(0, 30, 0)
 end_time = Timestamp(1, 0, 0)
 export_section("my_podcast.mp3", start_time, end_time)
 ```
+Extracts the section from one `Timestamp` to another.
 
 ### Splitting using timestamps
 ```python
@@ -45,6 +46,7 @@ timestamps = [
 
 split_on_timestamps("my_podcast.mp3", timestamps)
 ```
+Splits into multiple files based upon timestamps (as strings). Useful for splitting podcasts into topics / sections.
 
 ## 📁 Output
 Exported files will be saved in a directory called `output` next to the `main.py` script (or as set in `config.json`)
